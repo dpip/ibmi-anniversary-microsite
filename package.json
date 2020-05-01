@@ -1,0 +1,59 @@
+{
+    "name": "v18-repo-template",
+    "version": "2.0.0",
+    "description": "This repository is a boilerplate for v18 projects.",
+    "main": "public/index.html",
+    "scripts": {
+        "watch": "npm-run-all --parallel watch:*",
+        "watch:css": "node-sass -w ./source/scss/styles.scss ./public/assets/stylesheets/styles.css",
+        "watch:lint": "esw -w ./source/javascript/*.js",
+        "watch:webpack": "webpack --watch",
+        "autoprefix": "postcss -c ./postcss.json",
+        "prerelease": "cp -r ./public ./dist",
+        "release": "npm-run-all release:docs release:optimize release:zip",
+        "release:docs": "docco source/javascript/*.js -o ./docs/",
+        "release:optimize": "imagemin ./public/assets/images ./dist/assets/images",
+        "release:zip": "cd ./dist; zip -r ../RELEASE.zip *",
+        "postrelease": "rm -rf ./dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://bitbucket.org/centerlinedigital/v18-repo-template.git"
+    },
+    "keywords": [
+        "template",
+        "boilerplate"
+    ],
+    "author": "Centerline Digital",
+    "license": "UNLICENSED",
+    "homepage": "https://bitbucket.org/centerlinedigital/v18-repo-template#readme",
+    "private": true,
+    "devDependencies": {
+        "autoprefixer": "^6.6.1",
+        "babel-core": "^6.21.0",
+        "babel-loader": "^6.2.10",
+        "babel-preset-latest": "^6.16.0",
+        "browser-sync": "^2.18.6",
+        "browser-sync-webpack-plugin": "^1.1.3",
+        "docco": "^0.7.0",
+        "eslint": "^3.13.1",
+        "eslint-config-standard": "6.2.1",
+        "eslint-plugin-promise": "^3.4.0",
+        "eslint-plugin-standard": "2.0.1",
+        "eslint-watch": "^2.1.14",
+        "imagemin": "^5.2.2",
+        "imagemin-cli": "^3.0.0",
+        "node-sass": "^4.13.0",
+        "postcss-cli": "^2.6.0",
+        "webpack": "^1.14.0",
+        "yarn-run-all": "^3.1.1"
+    },
+    "browserslist": [
+        "last 2 versions",
+        "ie 11",
+        "Firefox ESR"
+    ],
+    "dependencies": {
+        "handlebars": "^4.0.11"
+    }
+}
